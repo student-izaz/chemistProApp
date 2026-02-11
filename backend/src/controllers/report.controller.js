@@ -20,7 +20,7 @@ export const monthlySalesReport = async (req, res, next) => {
 
 export const expiredMedicinesReport = async (req, res, next) => {
   try {
-    clg("Fetching expired medicines report...");
+    console.log("Fetching expired medicines report...");
     const data = await reportService.getExpiredMedicines();
     res.json({ success: true, data });
   } catch (err) {

@@ -14,7 +14,7 @@ router.use(protect);
 
 router.get("/today-sales", todaySalesReport);
 router.get("/monthly-sales", monthlySalesReport);
-router.get("/expired-medicines", expiredMedicinesReport);
+router.get("/expird-medicines", expiredMedicinesReport);
 router.get("/low-stock", lowStockReport);
 
 export default router;

@@ -3,7 +3,7 @@ import {
   createMedicine,
   getMedicines,
   lowStockMedicines,
-  expiredMedicines,
+  // expiredMedicines,
 } from "../controllers/medicine.controller.js";
 
 import { protect } from "../middlewares/auth.middleware.js";
@@ -15,6 +15,6 @@ router.use(protect);
 router.post("/", createMedicine);
 router.get("/", getMedicines);
 router.get("/low-stock", lowStockMedicines);
-router.get("/expired", expiredMedicines);
+// router.get("/expired", expiredMedicines);
 
 export default router;

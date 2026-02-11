@@ -34,10 +34,9 @@ const Dashboard = () => {
       .then((res) => setLowStock(res.data))
       .catch(console.error);
 
-    apiRequest("/reports/expiry-medicines")
+    apiRequest("/reports/expird-medicines")
       .then((res) => setExpiry(res.data))
       .catch(console.error);
-      console.log(expiry)
   }, []);
 
   // dummy chart data

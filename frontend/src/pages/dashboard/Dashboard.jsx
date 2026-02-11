@@ -37,6 +37,7 @@ const Dashboard = () => {
     apiRequest("/reports/expiry-medicines")
       .then((res) => setExpiry(res.data))
       .catch(console.error);
+      console.log(expiry)
   }, []);
 
   // dummy chart data

@@ -1,4 +1,6 @@
 const BASE_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+   process.env.NODE_ENV === "development"
+      ? "http://localhost:5000/api"
+      : "https://chemist-pro-app.vercel.app/api";
 
 export default BASE_URL;

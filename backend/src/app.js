@@ -8,25 +8,16 @@ import saleRoutes from "./routes/sale.routes.js";
 import reportRoutes from "./routes/report.routes.js";
 import cors from "cors";
 
-
 const app = express();
-
-
-
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://chemist-pro-app.vercel.app"
-];
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("CORS not allowed"));
-      }
-    },
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://chemist-pro-app.vercel.app"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
 );
@@ -39,7 +30,6 @@ app.use("/api/suppliers", supplierRoutes);
 app.use("/api/purchases", purchaseRoutes);
 app.use("/api/sales", saleRoutes);
 app.use("/api/reports", reportRoutes);
-
 
 app.use(errorHandler);
 

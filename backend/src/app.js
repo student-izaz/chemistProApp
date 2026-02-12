@@ -10,19 +10,31 @@ import cors from "cors";
 
 const app = express();
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:5174",
-      "https://chemist-pro-app.vercel.app"
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    credentials: true,
-  })
-);
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "https://chemist-pro-app.vercel.app"
+];
+
+app.use(cors({
+  origin: function(origin, callback){
+    if(!origin || allowedOrigins.includes(origin)){
+      callback(null, true);
+    } else {
+      callback(new Error("CORS blocked"));
+    }
+  },
+  credentials: true
+}));
+
 
 app.use(express.json());
+
+app.get("/api/health", (req, res) => {
+  res.json({ status: "OK" });
+  console.log('start')
+});
+
 
 app.use("/api/auth", authRoutes);
 app.use("/api/medicines", medicineRoutes);

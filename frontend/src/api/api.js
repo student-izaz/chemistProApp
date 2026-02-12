@@ -10,27 +10,23 @@ export const apiRequest = async (endpoint, options = {}) => {
       ...(token && { Authorization: `Bearer ${token}` }),
       ...(options.headers || {}),
     },
-    body: options.body ? JSON.stringify(options.body) : null,
+    body: options.body ? JSON.stringify(options.body) : null, // stringify here only
   });
 
-  // 👉 first read text safely
   const text = await res.text();
 
-  // 👉 handle empty response (Render sleep etc.)
-  if (!text) {
-    throw new Error("Server returned empty response (maybe server sleeping)");
-  }
+  if (!text) throw new Error("Empty response");
 
   let data;
   try {
     data = JSON.parse(text);
-  } catch (err) {
-    console.error("❌ Non-JSON response:", text);
-    throw new Error("Server returned invalid JSON");
+  } catch {
+    console.error("Server returned:", text);
+    throw new Error("Invalid JSON from server");
   }
 
   if (!res.ok) {
-    throw new Error(data.message || "Something went wrong");
+    throw new Error(data.message || "API error");
   }
 
   return data;

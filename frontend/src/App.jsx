@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -14,6 +15,11 @@ import Reports from "./pages/dashboard/Reports";
 import Users from "./pages/dashboard/Users";
 
 function App() {
+
+  useEffect(() => {
+  fetch("https://chemistproapp.onrender.com/api/health");
+}, []);
+
   return (
     <AuthProvider>
       <BrowserRouter>

@@ -16,9 +16,8 @@ import Users from "./pages/dashboard/Users";
 
 function App() {
 
-  useEffect(async () => {
-  let res = await fetch("https://chemistproapp.onrender.com/api/health");
-  console.log(res)
+  useEffect(() => {
+    fetch("https://chemistproapp.onrender.com/api/health");
 }, []);
 
   return (
